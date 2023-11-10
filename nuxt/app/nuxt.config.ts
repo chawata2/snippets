@@ -4,5 +4,9 @@ export default defineNuxtConfig({
   sourcemap: {
     server: true,
     client: true
+  },
+  typescript: {
+    strict: true,
+    typeCheck: true
   }
 })
