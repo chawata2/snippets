@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker: Attach to Node",
+            "type": "node",
+            "request": "attach",
+            "port": 9229,
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "In container",
+            "outputCapture": "std",
+            "program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+            "args": [
+                "dev",
+                "--port",
+                "3000"
+            ],
+        }
+    ]
+}
