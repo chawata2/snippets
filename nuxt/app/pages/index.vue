@@ -5,8 +5,8 @@ const input = [
   { id: 20, name: 'bar' },
   { id: 30, name: 'baz' },
   { id: 40, name: 'foobar' },
-  { id: 30, name: 'foobaz' },
-  { id: 30, name: 'barbaz' }
+  { id: 50, name: 'foobaz' },
+  { id: 100, name: 'barbaz' }
 ]
 const a = { 0: 'foo', 1: 'bar', 2: 'baz', 3: 'foobar' }
 </script>

@@ -36,20 +36,18 @@ const outValue = computed({
 const inValue = computed({
   get() {
     if (props.reverse) {
-      // return (
-      //   props.items.length - props.items.findIndex(item => item[props.itemValue] === outValue.value)
-      // )
-
-      return props.items.findIndex(item => item[props.itemValue] === outValue.value)
+      return (
+        props.items.length -
+        1 -
+        props.items.findIndex(item => item[props.itemValue] === outValue.value)
+      )
     } else {
       return props.items.findIndex(item => item[props.itemValue] === outValue.value)
     }
   },
   set(value) {
     if (props.reverse) {
-      console.log(props.items.at(-(value + 1)))
-      // outValue.value = props.items.at(- (value + 1))?.[props.itemValue]
-      outValue.value = props.items[value][props.itemValue]
+      outValue.value = props.items.at(-(value + 1))?.[props.itemValue]
     } else {
       outValue.value = props.items[value][props.itemValue]
     }
@@ -75,27 +73,28 @@ const range = (start: number, end: number) => [...Array(end).keys()].slice(start
  * itemsから Record<number, string> の形の配列を生成する
  * マウント後にitemsが変更されることを想定してcomputed
  */
-const ticks = computed(() =>
-  createObjectFromKeys(
+const ticks = computed(() => {
+  const foo = createObjectFromKeys(
     range(0, props.items.length),
     props.items.map(i => i[props.itemTitle])
   )
-)
+
+  /**
+   * TODO: Reverseしたときに、なぜか両端以外のticksが反転されるのでそれに対応する。
+   * なんで全部反転してくれないのか
+   */
+  if (props.reverse) {
+    return foo
+  } else {
+    return foo
+  }
+})
+
+console.log(ticks.value)
 
 const max = computed(() => props.items.length - 1)
-
-watch(inValue, () => {
-  console.log(inValue.value)
-})
 </script>
 
 <template>
-  <v-slider
-    v-model="inValue"
-    :ticks="ticks"
-    :max="max"
-    step="1"
-    show-ticks="always"
-    :reverse="reverse"
-  />
+  <v-slider v-model="inValue" :ticks="ticks" :max="max" step="1" show-ticks="always" reverse />
 </template>
