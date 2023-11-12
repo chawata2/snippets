@@ -1,4 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const sliderValue = ref<number>(20)
+const input = [
+  { id: 10, name: 'foo' },
+  { id: 20, name: 'bar' },
+  { id: 30, name: 'baz' },
+  { id: 40, name: 'foobar' },
+  { id: 30, name: 'foobaz' },
+  { id: 30, name: 'barbaz' }
+]
+const a = { 0: 'foo', 1: 'bar', 2: 'baz', 3: 'foobar' }
+</script>
 <template>
   <div>
     <h2>カタログ</h2>
@@ -33,7 +44,19 @@
         スライダーをセレクトボックスの変わりに使用できるようにラップしたコンポーネント。 <br />
         VuetifyのSliderは数値しか選択できないが、オブジェクトを割り当てて選択したかった。<br />
       </v-card-text>
-      <v-card-item> </v-card-item>
+      <v-card-item>
+        <div>value: {{ sliderValue }}</div>
+      </v-card-item>
+
+      <ExSliderSelector
+        v-model="sliderValue"
+        :items="input"
+        item-title="name"
+        item-value="id"
+        reverse
+      />
+
+      <v-slider reverse :ticks="a" :max="3" step="1" show-ticks="always" />
     </v-card>
   </div>
 </template>

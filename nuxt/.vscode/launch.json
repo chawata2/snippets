@@ -10,7 +10,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "In container",
+            "name": "server: nuxt",
             "outputCapture": "std",
             "program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
             "args": [
@@ -18,6 +18,22 @@
                 "--port",
                 "3000"
             ],
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "client: chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
+        },
+    ],
+    "compounds": [
+        {
+            "name": "fullstack: nuxt",
+            "configurations": [
+                "server: nuxt",
+                "client: chrome"
+            ]
         }
     ]
 }
