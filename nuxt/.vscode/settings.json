@@ -1,0 +1,9 @@
+{
+    "editor.codeActionsOnSave": {
+          "source.fixAll": false,
+          "source.fixAll.eslint": true
+        },
+  "[typescript][vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+}
